@@ -19,17 +19,19 @@ int main(int argc,char* argv[])
   {
     return 0;
   }
-  std::string buf;
-  struct sockaddr_in addr;
 
   while(1)
   {
+    std::string buf;
+    //数据来源的信息
+    struct sockaddr_in addr;
     us.Recv(buf,&addr);
     printf("client say:[%s]\n",buf.c_str());
+    
     printf("server say:");
     fflush(stdout);
 
-    scanf("%s",buf.c_str());
+    std:: cin>> buf;
     us.Send(buf,&addr);
   }
   
