@@ -60,7 +60,7 @@ int main(int argc,char* argv[])
       {
         std::string buf;
         peerts.Rev(buf);
-        printf("cli say:[%s]\n",buf.c_str());
+        printf("cil ip %s:%d say:[%s]\n",inet_ntoa(peeraddr.sin_addr),ntohs(port),buf.c_str());
 
         printf("svr say:");
         fflush(stdout);

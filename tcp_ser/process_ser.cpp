@@ -34,7 +34,8 @@ int main(int argc,char*argv[])
   //绑定前进行端口复用
   int flag = 1;
   setsockopt(lfd,SOL_SOCKET,SO_REUSEADDR,&flag,sizeof(flag));
-
+  
+  //绑定地址信息
   struct sockaddr_in addr;
   addr.sin_family =AF_INET;
   addr.sin_port = htons(port);
@@ -88,8 +89,10 @@ int main(int argc,char*argv[])
         else 
         {
           printf("recv buf:%s\n" ,buf);
-          string s = "已接收";
-          write(cfd,s.c_str(),s.size());
+          string s = "";
+          printf("server say:");
+          scanf("%s",s.c_str());
+          send(cfd,s.c_str(),s.size(),0);
         }
       }
       //干掉子进程

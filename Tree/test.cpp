@@ -71,6 +71,51 @@ int maxDepth(struct TreeNode*root)
   return (left >right ? left:right)+1;
 }
 
+//二叉搜索树转换为排序的双向链表
+
+TreeNode* cur = NULL;
+TreeNode* first = NULL;
+void fun(TreeNode* node)
+{
+  node->left = cur;
+  if(cur == NULL)
+  {
+    first = cur;
+  }
+  else 
+  {
+    cur->right = node;
+  }
+  cur = node;
+}
+void Inorder(TreeNode* root)
+{
+  if(root == nullptr)
+    return;
+  Inorder(root->left);
+  fun(root);
+  Inorder(root->right);
+}
+TreeNode* Convert(TreeNode* pRoot)
+{
+  Inorder(pRoot);
+  return first;
+}
 
 
 
+
+
+
+
+
+
+void fun1(TreeNode* node)
+{
+  node->left = cur;
+  if(cur != NULL)
+    cur->right = node;
+  else 
+    first = cur;
+  cur = node;
+}
